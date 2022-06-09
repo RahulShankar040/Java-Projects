@@ -1,0 +1,112 @@
+
+/*
+ * Rahul Shankar
+ * Encrypt.java
+ * Encrypt.java is a program that takes in any line or string and
+ * changes it 13 times to an encrypted Alpha bit letter.
+ * 
+ * Testing Plan:
+ * Type in a word and if it encrypts 13 times and comes out as the 
+ * same word in the end, the program works
+ * if wrong input is submitted it should give an input
+ * mismatch error.
+ * 
+ * Psuedocode: Make 4 methods and 1 field variable: line
+ * Make a default constructor and initialize the field variable line inside it
+ * make an object in main using the encrypt constructor.
+ * make it call rotate13times.
+ * Have it call getString from rotate13 times and then encrypt
+ * then have it call print String
+ * 		
+ */
+import java.util.Scanner;
+
+public class Encrypt 
+{
+	private String line;
+	public Encrypt()
+	{
+		line = new String("");
+	}
+
+	public static void main(String[]args)
+	{
+		
+		Encrypt cbt = new Encrypt();
+		cbt.rotate13times();
+		
+	}
+	public void rotate13times()
+	{
+		String encrypted = new String("");
+		getString();
+		for(int i = 1;i<14;i++)
+		{
+			 encryptString();
+			printString(i);
+			
+		}
+	}
+	public void getString()
+	{
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Welcome to Encrypt.java. Please enter a word, phrase, or sentence.");
+		System.out.println("->");
+		line = scanner.nextLine();
+	}
+	public void encryptString()
+	{
+		int charIn = 0;
+		String encypred = new String("");
+		for(int j=  0;j<line.length();j++)
+		{
+			charIn = (int)line.charAt(j);
+			if(charIn<65)
+			{
+				encypred+=(char)charIn+"";
+			}	
+			else if(charIn>122)
+			{
+				encypred+=(char)charIn+"";
+			}
+			else if(charIn>90&&charIn<97)
+			{
+				
+				encypred+=(char)charIn+"";
+			}
+			else if (charIn==89||charIn==90||charIn==121||charIn==122)
+            {
+				
+                charIn=charIn-24;
+                encypred += (char)charIn + "";
+                charIn=charIn-2;
+
+            }
+            else if(charIn>64&&charIn<89)
+            {
+				charIn+=2;
+				encypred += (char)charIn + "";
+
+			}
+			else if(charIn>96&&charIn<121)
+			{
+				charIn+=2;
+				encypred += (char)charIn + "";
+			}
+			
+		}
+		
+		line=encypred;
+	}
+	public void printString(int countNow)
+	{
+		System.out.println("Encryption"+countNow + ":");
+		System.out.println(line+"\n");
+	}
+	
+	
+	
+	
+	
+}
+	
